@@ -14,7 +14,7 @@ let data = {
   "ortuPutra" : "Putra dari Bapak SUDJIMIN (Alm) dan Ibu NURSEHA (Alm)",
   "alamatPutri" : "Dusun Pangungsen RT 18/ RW 05, Desa Ciasem Girang, Kecamatan Ciasem, Kabupaten Subang",
   "ortuPutri" : "Putri dari Bapak ABDUL HAMID dan Ibu SUMIATI",
-  "lorem" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis nulla nec bibendum suscipit. Donec ut libero et turpis convallis iaculis. Duis turpis nulla, ullamcorper et odio a, fringilla ultricies nisl. Pellentesque ullamcorper tellus magna, in pellentesque dolor luctus sed. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed eu sapien in lacus lacinia aliquet. Mauris ex enim, auctor sit amet varius rutrum, lacinia vel metus. Nullam eros sem, accumsan ac diam a, commodo viverra metus. Quisque sagittis nisi a scelerisque porta. In elementum tellus sit amet molestie rutrum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ornare tempor arcu fringilla dignissim. Morbi accumsan quis arcu at finibus. Ut quis varius eros. Morbi ut quam non urna elementum dictum.",
+  "lorem" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis nulla nec bibendum suscipit. Donec ut libero et turpis convallis iaculis. ",
 }
 
 data['hariA'] = data.akad.split(',')[0]
@@ -99,3 +99,82 @@ let c1 = setInterval(()=>{
 let p1 = setInterval(()=>{
   glitter(pasangan, 45);
 }, 2000);
+
+let galeriFoto = document.getElementsByClassName('gf');
+
+function view(foto){
+  let tmp = document.createElement('div');
+  tmp.setAttribute('class','view');
+  let gambar = document.createElement('img');
+  gambar.src = foto;
+  gambar.alt = "gambar";
+  gambar.setAttribute('class','viewImage');
+  tmp.appendChild(gambar);
+  let close = document.createElement('button');
+  close.textContent = "x"
+  close.setAttribute('class','closeView');
+  tmp.appendChild(close);
+  document.body.appendChild(tmp);
+  close.addEventListener('click',()=>{
+    document.body.removeChild(tmp);
+  })
+  tmp.addEventListener('click',(e)=>{
+    if(e.target.hasAttribute("src")){
+        
+      
+    }
+    else{
+      document.body.removeChild(tmp);
+    }
+  })
+}
+
+for(let gf of galeriFoto){
+  gf.addEventListener('click', (e)=>{
+    console.log(e.target.src);
+    view(e.target.src);
+  })
+}
+
+   
+function copy(ini, data) {
+  // Get the text field
+  //let teks = document.getElementById(coba);
+   let copyText = document.createElement('input');
+   copyText.value = data;
+  //console.log(copyText.value);
+  // Select the text field
+   copyText.select();
+   copyText.setSelectionRange(0, 99999);
+  // For mobile devices
+   // Copy the text inside the text field
+   navigator.clipboard.writeText(copyText.value)
+   .then(
+      v => {
+         toast('Rekening disalin: ' + copyText.value)
+         ini.textContent = "Disalin!"
+      },
+      e => toast(e.toString())//console.log(e.toString())
+   );
+}
+
+      
+function toast(text){
+   let toastIni = document.createElement('div');
+    
+   toastIni.setAttribute('style',"position: fixed; bottom: 10vh; left: 5%; width: 90%; padding: 2% 5%; background: rgba(120, 193, 243, .9); color: #fff; text-align: center; border-radius: 8px; z-index: 25; font-family: 'Montserrat', Sans-Serif;");
+    
+   toastIni.setAttribute('class','fadeIn');
+   toastIni.innerHTML = `<p class="mb-0">${text}</p>`;
+   document.body.appendChild(toastIni);
+
+   setTimeout(()=>{
+      toastIni.classList.remove('fadeIn');
+      toastIni.classList.add('fadeOut');
+      setTimeout(()=>{
+        document.body.removeChild(toastIni)
+      }, 1000);
+   }, 2000);
+    
+}
+  
