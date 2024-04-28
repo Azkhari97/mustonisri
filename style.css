@@ -6,6 +6,7 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -383,6 +384,13 @@ body {
   margin-bottom: 5%;
 }
 
+#cerita #isi-cerita p {
+  font-family: "Monserrat", Sans-Serif;
+  font-weight: 150;
+  color: #222;
+  font-size: 0.8em;
+}
+
 .box-cerita {
   border-radius: 10px;
   border: 1px solid var(--dua);
@@ -427,12 +435,114 @@ body {
   }
 }
 
+#galeri {
+  position: relative;
+  font-family: "Great Vibes", cursive;
+  letter-spacing: 1px;
+  padding: 5%;
+  text-align: center;
+}
+
+#galeri:before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  aspect-ratio: 8 / 1;
+  top: 0;
+  left: 0;
+  border-radius: 100%;
+  background: linear-gradient(to top, var(--dua) 50%, transparent 50%);
+  z-index: 2;
+  transform: translateY(-50%);
+}
+
+#galeri h2 {
+  position: relative;
+  z-index: 3;
+  font-weight: bold;
+  color: var(--dua);
+  text-shadow: -2px -2px 8px #fff;
+  margin-bottom: 5%;
+  margin-top: 5%;
+}
+
+#galeri .gc {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 5%;
+}
+#galeri .gc div {
+  width: 25%;
+  height: auto;
+  box-shadow: -2px -2px 5px var(--dua);
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin: -3%;
+  overflow: hidden;
+}
+
+#galeri .gc div img {
+  width: 100%;
+  height: 100%;
+}
+
+#hadiah {
+  width: 100%;
+  position: relative;
+  font-family: "Monserrat", Sans-Serif;
+  padding: 5% 10%;
+  color: #000;
+  font-weight: 150;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+#hadiah .rekening {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 3%;
+  border: 2px solid var(--dua);
+  border-radius: 10px;
+  padding: 3% 5%;
+}
+
+#hadiah .rekening .info p {
+  font-weight: normal;
+  margin-bottom: 0;
+}
+#hadiah .rekening img {
+  width: 25%;
+}
+
+#hadiah .rekening .info button {
+  border: 1px solid var(--dua);
+  background: transparent;
+  color: var(--dua);
+  padding: 1% 4%;
+  border-radius: 10px;
+  margin: 0%;
+}
+#hadiah .rekening .info button:hover {
+  background: var(--dua);
+  color: #fff;
+}
+
 
 #penutup {
   position: relative;
   font-family: "Dancing script", cursive;
   text-align: center;
-  padding: 8%;
+  padding: 8% 10%;
   font-weight: 300;
   overflow: normal;
 }
@@ -448,18 +558,6 @@ body {
   left: 100%;
 }
 
-#penutup:before {
-  position: absolute;
-  content: "";
-  width: 100%;
-  aspect-ratio: 4 / 1;
-  top: 0;
-  left: 0;
-  border-radius: 100%;
-  background: linear-gradient(to top, var(--dua) 50%, transparent 50%);
-  z-index: 2;
-  transform: translateY(-50%);
-}
 
 #penutup > h2 {
   color: var(--dua);
@@ -481,3 +579,60 @@ footer > p > a {
   color: #fff;
   text-decoration: none;
 }
+
+
+.view {
+  position: fixed;
+  background: rgba(0,0,0,.8);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.viewImage {
+  width: 100%;
+  border: 2px solid #fff;
+  animation: flip 1s 1 linear;
+}
+
+@keyframes flip {
+  0%{
+    transform: rotateY(0deg);
+    opacity: 0;
+  }
+  50%{
+    opacity: 1;
+    transform: rotateY(180deg);
+  }
+  100%{
+    opacity: 1;
+    transform: rotateY(360deg);
+  }
+}
+
+.closeView {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 1%;
+  border-radius: 100%;
+  top: 1%;
+  right: 1%;
+  z-index: 11;
+}
+
+.closeView:hover{
+  color: #000;
+  background: #fff
+  }
